@@ -24,6 +24,19 @@ class HomePage extends GetView<HomeController> {
               )
           ],
         ),
+        onEmpty: Center(
+            child: Text(
+          'Não há estabelecimentos disponiveis para sua cidade!',
+          textAlign: TextAlign.center,
+          style: Get.textTheme.bodyMedium!.copyWith(color: Colors.green),
+        )),
+        onError: (error) => Center(
+          child: Text(
+            'Não foi possivel buscar od estabelecimentos. Tente mais tarde!',
+            textAlign: TextAlign.center,
+            style: Get.textTheme.bodyMedium!.copyWith(color: Colors.red),
+          ),
+        ),
       ),
     );
   }

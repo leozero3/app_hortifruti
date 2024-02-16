@@ -10,13 +10,15 @@ class HomeController extends GetxController with StateMixin<List<StoreModel>> {
   void onInit() {
     _repository.getStores().then(
       (data) {
-        change(data, status: RxStatus.success());
+        if (data.isEmpty) {
+          change([], status: RxStatus.empty());
+        } else {
+          change(data, status: RxStatus.success());
+        }
       },
       onError: (error) => change(
         null,
-        status: RxStatus.error(
-          error.toString(),
-        ),
+        status: RxStatus.error(error.toString()),
       ),
     );
     super.onInit();
