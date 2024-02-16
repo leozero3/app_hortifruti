@@ -9,23 +9,18 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomePage'),
-      ),
-      body: Center(
-          child: Column(
-        children: [
-          Text('Pressione o botao'),
-          Obx(() {
-            return Text('${controller.counter}');
-          }),
-        ],
-      )),
-      floatingActionButton: FloatingActionButton(
-        onPressed: controller.incrementCounter,
-        tooltip: 'incrementar',
-        child: Icon(Icons.add),
-      ),
-    );
+        appBar: AppBar(
+          title: const Text('Hortifruti'),
+          centerTitle: true,
+        ),
+        body: ListView(
+          children: [
+            ListTile(
+              title: Text('Horti Verde'),
+              leading: FlutterLogo(),
+              trailing: Text('Aberto'),
+            )
+          ],
+        ));
   }
 }
