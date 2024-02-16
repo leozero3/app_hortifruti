@@ -1,12 +1,12 @@
 class StoreModel {
   int id;
   String name;
-  String? image;
+  String image;
   bool isOnline;
   StoreModel({
     required this.id,
     required this.name,
-    this.image,
+    required this.image,
     required this.isOnline,
   });
 

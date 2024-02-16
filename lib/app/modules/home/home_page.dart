@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 import './home_controller.dart';
 
@@ -19,7 +20,12 @@ class HomePage extends GetView<HomeController> {
             for (var store in state!)
               ListTile(
                 title: Text(store.name),
-                leading: FlutterLogo(),
+                leading: ClipRRect(
+                  child: FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image: store.image,
+                  ),
+                ),
                 trailing: Text(store.isOnline ? 'Aberto' : 'Fechado'),
               )
           ],
