@@ -8,7 +8,9 @@ import 'package:intl/intl.dart';
 
 void main() {
   Get.put<Api>(Api());
+
   Intl.defaultLocale = 'pt-BR';
+
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
