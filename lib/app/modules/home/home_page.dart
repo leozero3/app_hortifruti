@@ -20,14 +20,33 @@ class HomePage extends GetView<HomeController> {
             for (var store in state!)
               ListTile(
                 title: Text(store.name),
-                leading: ClipRRect(
-                  child: FadeInImage.memoryNetwork(
-                    placeholder: kTransparentImage,
-                    image: store.image,
+                leading: SizedBox(
+                  width: 56,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: FadeInImage.memoryNetwork(
+                      placeholder: kTransparentImage,
+                      image: store.image,
+                    ),
                   ),
                 ),
-                trailing: Text(store.isOnline ? 'Aberto' : 'Fechado'),
-              )
+                trailing: Container(
+                  padding: EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    color: store.isOnline ? Colors.green : Colors.black45,
+                    border: Border.all(color: Colors.black12, width: 2),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Text(
+                    store.isOnline ? 'aberto' : 'fechado',
+                    style:
+                        Get.textTheme.bodyMedium!.copyWith(color: Colors.white),
+                  ),
+                ),
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                onTap: () {},
+              ),
           ],
         ),
         onEmpty: Center(
