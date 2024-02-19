@@ -15,14 +15,12 @@ class ProductModel {
     this.description,
   });
 
-  factory ProductModel.fromJson(Map<String, dynamic> json) {
-    return ProductModel(
-      id: json['id'],
-      name: json['nome'],
-      price: json['preco'],
-      unitOfMeasure: json['unidade'],
-      image: json['imagem'],
-      description: json['descricao'],
-    );
-  }
+  factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
+        id: json['id'],
+        name: json['nome'],
+        price: num.parse(json['preco']),
+        unitOfMeasure: json['unidade'],
+        image: json['imagem'],
+        description: json['descricao'],
+      );
 }
