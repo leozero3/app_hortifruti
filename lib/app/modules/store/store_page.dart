@@ -10,41 +10,42 @@ class StorePage extends GetView<StoreController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(''),
-      ),
       body: controller.obx(
-        (state) => ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-              child: Row(
-                children: [
-                  Container(
-                    width: 96,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: FadeInImage.memoryNetwork(
-                        placeholder: kTransparentImage,
-                        image: state!.image,
+        (state) => CustomScrollView(
+          slivers: [
+            const SliverAppBar(),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 96,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: FadeInImage.memoryNetwork(
+                          placeholder: kTransparentImage,
+                          image: state!.image,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          state.name,
-                          style: Get.textTheme.headlineSmall,
-                        ),
-                        SizedBox(height: 8),
-                        StoreStatus(isOnline: state.isOnline)
-                      ],
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            state.name,
+                            style: Get.textTheme.headlineSmall,
+                          ),
+                          const SizedBox(height: 8),
+                          StoreStatus(isOnline: state.isOnline)
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],
