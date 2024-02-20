@@ -76,7 +76,9 @@ class StorePage extends GetView<StoreController> {
                         ListTile(
                           title: Text(product.name),
                           subtitle: Text(
-                            NumberFormat.simpleCurrency().format(product.price),
+                            NumberFormat.simpleCurrency()
+                                    .format(product.price) +
+                                (product.isKG ? '/Kg' : ''),
                           ),
                           leading: product.image.isNotEmpty
                               ? SizedBox(
@@ -97,7 +99,10 @@ class StorePage extends GetView<StoreController> {
                                 )
                               : null,
                           onTap: () {
-                            Get.toNamed(Routes.product, arguments: {'product': product, 'store': state, });
+                            Get.toNamed(Routes.product, arguments: {
+                              'product': product,
+                              'store': state,
+                            });
                           },
                         ),
                     ],

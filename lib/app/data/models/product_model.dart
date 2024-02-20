@@ -5,6 +5,7 @@ class ProductModel {
   String unitOfMeasure;
   String? description;
   String image;
+  bool get isKG => unitOfMeasure == 'KG';
 
   ProductModel({
     required this.id,
