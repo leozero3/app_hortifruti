@@ -1,3 +1,4 @@
+import 'package:app_hortifruti/app/modules/product/widgets/quantity_and_weight_widget.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,7 @@ class ProductPage extends GetView<ProductController> {
               decoration: const InputDecoration(labelText: 'Observação'),
               maxLength: 50,
             ),
+            QuantityAndWeightWidget(isKg: product.isKG),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: ElevatedButton(
