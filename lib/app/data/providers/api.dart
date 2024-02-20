@@ -5,8 +5,8 @@ import 'package:get/get_connect/http/src/request/request.dart';
 class Api extends GetConnect {
   @override
   void onInit() {
-    httpClient.baseUrl = "http://192.168.15.4:3333/"; //work
-    // httpClient.baseUrl = "http://172.30.48.1:3333/"; //home
+    // httpClient.baseUrl = "http://192.168.15.4:3333/"; //work
+    httpClient.baseUrl = "http://192.168.96.1:3333/"; //home
 
     httpClient.addRequestModifier((Request request) {
       request.headers['Accept'] = 'application/json';

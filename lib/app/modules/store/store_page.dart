@@ -1,3 +1,4 @@
+import 'package:app_hortifruti/app/routes/pages.dart';
 import 'package:app_hortifruti/app/widgets/store_status.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +96,9 @@ class StorePage extends GetView<StoreController> {
                                   ),
                                 )
                               : null,
-                          onTap: () {},
+                          onTap: () {
+                            Get.toNamed(Routes.product, arguments: {'product': product, 'store': state, });
+                          },
                         ),
                     ],
                   );
