@@ -74,27 +74,72 @@ class WeightWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Slider(
-        min: 1,
-        max: 2,
-        divisions: 19,
-        value: controller.weight,
-        onChanged: controller.changeWeight);
+    return Row(
+      children: [
+        Text(
+          '${NumberFormat.decimalPattern().format(controller.min)}Kg',
+          style: Get.textTheme.labelSmall,
+        ),
+        Expanded(
+          child: GestureDetector(
+            onTapDown: (details) => controller.enableSlider(),
+            child: Slider(
+              min: controller.min,
+              max: controller.max,
+              divisions: 19,
+              label: controller.label,
+              value: controller.weight,
+              onChanged: (value) {
+                if (controller.sliderEnable.isTrue) {
+                  controller.changeWeight(value);
+                }
+              },
+            ),
+          ),
+        ),
+        Text(
+          '${NumberFormat.decimalPattern().format(controller.max)}Kg',
+          style: Get.textTheme.labelSmall,
+        ),
+      ],
+    );
   }
 }
 
 class QuantityAndWeightController extends GetxController {
-  bool isKg;
-
   QuantityAndWeightController({required this.isKg});
 
+  bool isKg;
   num quantity = 1;
   double get weight => quantity.toDouble();
+  late double min;
+  late double max;
+  final sliderEnable = false.obs;
+
+  String get label {
+    String unit = 'Kg';
+    String pattern = '0.00';
+    var number = weight;
+
+    if (number < 1) {
+      number *= 1000;
+      unit = 'g';
+      pattern = '';
+    }
+    return NumberFormat(pattern).format(number) + unit;
+  }
+
+  @override
+  void onInit() {
+    _updateMinAndMax();
+    super.onInit();
+  }
 
   void changeQuantity(num value) {
     quantity = value;
 
     update();
+    _updateMinAndMax();
   }
 
   void changeWeight(double value) {
@@ -102,4 +147,16 @@ class QuantityAndWeightController extends GetxController {
 
     update();
   }
+
+  void _updateMinAndMax() {
+    min = weight - 1 + 0.05;
+    max = weight;
+
+    if (min < 0) {
+      min = 0.05;
+      max = 1;
+    }
+  }
+
+  void enableSlider() => sliderEnable.value = true;
 }

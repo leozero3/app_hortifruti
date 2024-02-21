@@ -51,7 +51,7 @@ class ProductPage extends GetView<ProductController> {
               maxLength: 50,
             ),
             Container(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               decoration: BoxDecoration(
                 color: Colors.grey[100],
                 border: Border.all(color: Colors.black12, width: 2),
@@ -60,11 +60,13 @@ class ProductPage extends GetView<ProductController> {
               child: Column(
                 children: [
                   Text(
-                    'Altere a quantidade',
-                    style: TextStyle(
-                        color: Colors.black54, fontWeight: FontWeight.w500),
+                    'Altere ${product.isKG ? 'o peso' : 'a quantidade'}',
+                    style: const TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   QuantityAndWeightWidget(isKg: product.isKG),
                 ],
               ),
