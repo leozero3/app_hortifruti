@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class QuantityAndWeightWidget extends StatelessWidget {
   bool isKg;
@@ -24,20 +25,40 @@ class QuantityWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var quantity = controller.quantity;
+    var isKg = controller.isKg;
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         ElevatedButton(
-          onPressed: () {
-            controller.changeQuantity(quantity - 1);
-          },
-          child: Icon(Icons.remove),
+          onPressed: quantity > 1
+              ? () {
+                  controller.changeQuantity(quantity - 1);
+                }
+              : null,
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.all(0),
+            minimumSize: const Size(40, 40),
+          ),
+          child: const Icon(Icons.remove),
         ),
-        Text('$quantity'),
+        Container(
+          width: 48,
+          padding: EdgeInsets.all(8),
+          child: Text(
+            NumberFormat.decimalPattern().format(quantity) + (isKg ? 'Kg' : ''),
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+        ),
         ElevatedButton(
           onPressed: () {
             controller.changeQuantity(quantity + 1);
           },
-          child: Icon(Icons.add),
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.all(0),
+            minimumSize: const Size(40, 40),
+          ),
+          child: const Icon(Icons.add),
         ),
       ],
     );
