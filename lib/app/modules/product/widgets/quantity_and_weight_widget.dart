@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class QuantityAndWeightWidget extends StatelessWidget {
-  bool isKg;
-  QuantityAndWeightWidget({this.isKg = false});
+  final bool isKg;
+  const QuantityAndWeightWidget({super.key, this.isKg = false});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class QuantityAndWeightWidget extends StatelessWidget {
       init: QuantityAndWeightController(isKg: isKg),
       builder: (controller) {
         return Column(
-          children: [QuantityWidget()],
+          children: [QuantityWidget(), WeightWidget()],
         );
       },
     );
@@ -20,7 +20,9 @@ class QuantityAndWeightWidget extends StatelessWidget {
 }
 
 class QuantityWidget extends StatelessWidget {
-  var controller = Get.find<QuantityAndWeightController>();
+  final controller = Get.find<QuantityAndWeightController>();
+
+  QuantityWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +44,12 @@ class QuantityWidget extends StatelessWidget {
           child: const Icon(Icons.remove),
         ),
         Container(
-          width: 48,
-          padding: EdgeInsets.all(8),
+          width: isKg ? 96 : 48,
+          padding: const EdgeInsets.all(8),
           child: Text(
             NumberFormat.decimalPattern().format(quantity) + (isKg ? 'Kg' : ''),
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
         ElevatedButton(
@@ -65,14 +67,37 @@ class QuantityWidget extends StatelessWidget {
   }
 }
 
+class WeightWidget extends StatelessWidget {
+  final controller = Get.find<QuantityAndWeightController>();
+
+  WeightWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Slider(
+        min: 1,
+        max: 2,
+        divisions: 19,
+        value: controller.weight,
+        onChanged: controller.changeWeight);
+  }
+}
+
 class QuantityAndWeightController extends GetxController {
   bool isKg;
 
   QuantityAndWeightController({required this.isKg});
 
   num quantity = 1;
+  double get weight => quantity.toDouble();
 
   void changeQuantity(num value) {
+    quantity = value;
+
+    update();
+  }
+
+  void changeWeight(double value) {
     quantity = value;
 
     update();
