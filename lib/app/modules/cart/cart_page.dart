@@ -1,3 +1,4 @@
+import 'package:app_hortifruti/app/data/models/cart_product_model.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -14,18 +15,34 @@ class CartPage extends GetView<CartController> {
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            for (var cartProduct in controller.products)
-              ListTile(
-                title: Text(cartProduct.product.name),
-                subtitle: Text(
-                  '${NumberFormat.simpleCurrency().format(cartProduct.total)} (${NumberFormat.simpleCurrency().format(cartProduct.product.price)})',
-                ),
-              )
-          ],
-        ),
+        child: Obx(() {
+          return Column(
+            children: [
+              for (var cartProduct in controller.products)
+                ListTile(
+                  title: Text(cartProduct.product.name),
+                  subtitle: Text(
+                    '${NumberFormat.simpleCurrency().format(cartProduct.total)} (${NumberFormat.simpleCurrency().format(cartProduct.product.price)} un/kg)',
+                  ),
+                  leading: _buildProductQuantity(cartProduct),
+                  trailing: IconButton(
+                    onPressed: () {
+                      controller.removeProduct(cartProduct);
+                    },
+                    icon: const Icon(Icons.delete),
+                  ),
+                )
+            ],
+          );
+        }),
       ),
+    );
+  }
+
+  Widget _buildProductQuantity(CartProductModel cartProduct) {
+    return Text(
+      NumberFormat.decimalPattern().format(cartProduct.quantity) +
+          (cartProduct.product.isKG ? 'Kg' : 'x'),
     );
   }
 }

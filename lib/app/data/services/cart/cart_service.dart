@@ -16,7 +16,7 @@ class CartService extends GetxService {
     products.clear();
   }
 
-  void removeProduct(CartProductModel cartProduct) {
+  void removeProductFromCart(CartProductModel cartProduct) {
     products.remove(cartProduct);
   }
 }
