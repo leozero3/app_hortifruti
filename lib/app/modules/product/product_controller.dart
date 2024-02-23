@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:app_hortifruti/app/data/models/cart_product_model.dart';
 import 'package:app_hortifruti/app/data/models/product_model.dart';
 import 'package:app_hortifruti/app/data/models/store_model.dart';
@@ -24,7 +22,13 @@ class ProductController extends GetxController {
   void addToCart() {
     var quantity = Get.find<QuantityAndWeightController>().quantity;
 
-    // _cartService.newCart(store.value!);
+    if (_cartService.isANewStore(store.value!)) {
+      _cartService.clearCart();
+    }
+
+    if (_cartService.products.isEmpty) {
+      _cartService.newCart(store.value!);
+    }
     _cartService.addProductToCart(
       CartProductModel(
         product: product.value!,
