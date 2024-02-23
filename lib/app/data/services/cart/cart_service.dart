@@ -7,7 +7,7 @@ class CartService extends GetxService {
 
   final store = Rxn<StoreModel>();
 
-  void addProduct(CartProductModel cartProduct) {
+  void addProductToCart(CartProductModel cartProduct) {
     products.add(cartProduct);
   }
 
