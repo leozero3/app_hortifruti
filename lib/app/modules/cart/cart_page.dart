@@ -56,7 +56,9 @@ class CartPage extends GetView<CartController> {
                 )
               else
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed('/checkout');
+                  },
                   child: const Text('Avançar'),
                 )
             ],
