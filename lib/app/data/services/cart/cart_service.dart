@@ -16,7 +16,7 @@ class CartService extends GetxService {
   }
 
   bool isANewStore(StoreModel newStore) {
-    return store.value?.id != newStore.id;
+    return store.value != null && store.value!.id != newStore.id;
   }
 
   void clearCart() {
