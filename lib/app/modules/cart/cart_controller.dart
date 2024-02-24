@@ -10,8 +10,16 @@ class CartController extends GetxController {
   List<CartProductModel> get products => _cartService.products;
 
   final observationController = TextEditingController();
-
   StoreModel? get store => _cartService.store.value;
+
+  @override
+  void onInit() {
+    observationController.text = _cartService.observation.value!;
+    observationController.addListener(() {
+      _cartService.observation.value = observationController.text;
+    });
+    super.onInit();
+  }
 
   void removeProduct(CartProductModel cartProduct) {
     _cartService.removeProductFromCart(cartProduct);
