@@ -10,13 +10,22 @@ class CheckoutPage extends GetView<CheckoutController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CheckoutPage'),
+        title: const Text('Checkout'),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Obx(() {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Center(
+                child: OutlinedButton(
+                  onPressed: () {
+                    controller.goToLogin();
+                  },
+                  child: const Text('Entre com sua conta para continuar'),
+                ),
+              ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 16.0),

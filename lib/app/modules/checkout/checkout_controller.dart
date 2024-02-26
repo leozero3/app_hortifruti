@@ -2,6 +2,7 @@ import 'package:app_hortifruti/app/data/models/payment_method_model.dart';
 import 'package:app_hortifruti/app/data/models/shipping_by_city_model.dart';
 import 'package:app_hortifruti/app/data/services/cart/cart_service.dart';
 import 'package:app_hortifruti/app/modules/checkout/checkout_repository.dart';
+import 'package:app_hortifruti/app/routes/pages.dart';
 import 'package:get/get.dart';
 
 class CheckoutController extends GetxController {
@@ -32,5 +33,9 @@ class CheckoutController extends GetxController {
 
   void changePaymentMethod(PaymentMethodModel? newPaymentMethod) {
     paymentMethod.value = newPaymentMethod;
+  }
+
+  void goToLogin() {
+    Get.toNamed(Routes.login);
   }
 }
