@@ -1,4 +1,5 @@
 import 'package:app_hortifruti/app/data/models/category_model.dart';
+import 'package:app_hortifruti/app/data/models/shipping_by_city_model.dart';
 
 class StoreModel {
   int id;
@@ -6,6 +7,7 @@ class StoreModel {
   String image;
   bool isOnline;
   List<CategoryModel> categories;
+  List<ShippingByCityModel> shippingByCity;
 
   StoreModel({
     required this.id,
@@ -13,6 +15,7 @@ class StoreModel {
     required this.image,
     required this.isOnline,
     required this.categories,
+    required this.shippingByCity,
   });
 
   factory StoreModel.fromJson(Map<String, dynamic> json) {
@@ -26,6 +29,13 @@ class StoreModel {
           : List<CategoryModel>.from(
               json['categorias'].map(
                 (product) => CategoryModel.fromJson(product),
+              ),
+            ),
+      shippingByCity: json['cidades'] == null
+          ? []
+          : List<ShippingByCityModel>.from(
+              json['cidades'].map(
+                (city) => ShippingByCityModel.fromJson(city),
               ),
             ),
     );
