@@ -1,12 +1,15 @@
+import 'dart:convert';
+
 import 'package:app_hortifruti/app/data/models/store_model.dart';
+import 'package:app_hortifruti/app/data/models/user_login_request_model.dart';
 import 'package:get/get_connect/connect.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 
 class Api extends GetConnect {
   @override
   void onInit() {
-    // httpClient.baseUrl = "http://192.168.15.4:3333/"; //work
-    httpClient.baseUrl = "http://192.168.96.1:3333/"; //home
+    httpClient.baseUrl = "http://192.168.15.4:3333/"; //work
+    // httpClient.baseUrl = "http://192.168.96.1:3333/"; //home
 
     httpClient.addRequestModifier((Request request) {
       request.headers['Accept'] = 'application/json';
@@ -16,6 +19,11 @@ class Api extends GetConnect {
     });
 
     super.onInit();
+  }
+
+  login(UserLoginRequestModel data) async {
+    var json = _errorHandler(await post('login', jsonEncode(data)));
+    return json;
   }
 
   Future<List<StoreModel>> getStores() async {
