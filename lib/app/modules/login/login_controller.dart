@@ -13,6 +13,6 @@ class LoginController extends GetxController {
       email: emailController.text,
       password: passwordController.text,
     );
-    _authService.login(userLoginRequestModel).then(() => null);
+    _authService.login(userLoginRequestModel);
   }
 }
