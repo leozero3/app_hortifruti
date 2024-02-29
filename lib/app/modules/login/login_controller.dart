@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 
 class LoginController extends GetxController {
   final _authService = Get.find<AuthService>();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final emailController = TextEditingController(text: 'cliente@email.com');
+  final passwordController = TextEditingController(text: '123456');
 
   void login() {
     var userLoginRequestModel = UserLoginRequestModel(

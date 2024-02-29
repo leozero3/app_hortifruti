@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:app_hortifruti/app/data/models/store_model.dart';
 import 'package:app_hortifruti/app/data/models/user_login_request_model.dart';
 import 'package:app_hortifruti/app/data/models/user_login_response_model.dart';
+import 'package:app_hortifruti/app/data/models/user_model.dart';
 import 'package:app_hortifruti/app/data/services/storage/storage_service.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
@@ -33,6 +34,12 @@ class Api extends GetConnect {
   Future<UserLoginResponseModel> login(UserLoginRequestModel data) async {
     var response = _errorHandler(await post('login', jsonEncode(data)));
     return UserLoginResponseModel.fromJson(response.body);
+  }
+
+  Future<UserModel> getUser() async {
+    var response = _errorHandler(await get('auth/me'));
+
+    return UserModel.fromJson(response.body);
   }
 
   Future<List<StoreModel>> getStores() async {
