@@ -3,14 +3,16 @@ import 'dart:convert';
 import 'package:app_hortifruti/app/data/models/store_model.dart';
 import 'package:app_hortifruti/app/data/models/user_login_request_model.dart';
 import 'package:app_hortifruti/app/data/models/user_login_response_model.dart';
-import 'package:get/get_connect/connect.dart';
+import 'package:app_hortifruti/app/data/services/storage/storage_service.dart';
+import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 
 class Api extends GetConnect {
+  final _storageService = Get.find<StorageService>();
   @override
   void onInit() {
-    httpClient.baseUrl = "http://192.168.15.4:3333/"; //work
-    // httpClient.baseUrl = "http://192.168.96.1:3333/"; //home
+    // httpClient.baseUrl = "http://192.168.15.4:3333/"; //work
+    httpClient.baseUrl = "http://192.168.96.1:3333/"; //home
 
     httpClient.addRequestModifier((Request request) {
       request.headers['Accept'] = 'application/json';
@@ -19,6 +21,12 @@ class Api extends GetConnect {
       return request;
     });
 
+    httpClient.addAuthenticator((Request request) {
+      var token = _storageService.token;
+      var headers = {'Authorization': "Bearer $token"};
+      request.headers.addAll(headers);
+      return request;
+    });
     super.onInit();
   }
 
