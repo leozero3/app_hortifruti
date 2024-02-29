@@ -1,5 +1,6 @@
 import 'package:app_hortifruti/app/data/models/payment_method_model.dart';
 import 'package:app_hortifruti/app/data/models/shipping_by_city_model.dart';
+import 'package:app_hortifruti/app/data/services/auth/auth_service.dart';
 import 'package:app_hortifruti/app/data/services/cart/cart_service.dart';
 import 'package:app_hortifruti/app/modules/checkout/checkout_repository.dart';
 import 'package:app_hortifruti/app/routes/pages.dart';
@@ -7,10 +8,13 @@ import 'package:get/get.dart';
 
 class CheckoutController extends GetxController {
   final _cartService = Get.find<CartService>();
+  final _authService = Get.find<AuthService>();
   final CheckoutRepository _repository;
   CheckoutController(this._repository);
 
+  bool get isLogged => _authService.isLogged;
   num get totalCart => _cartService.total;
+
   num get deliveryCost {
     if (getShippingByCity != null) {
       return getShippingByCity!.cost;
