@@ -5,7 +5,7 @@ import 'package:app_hortifruti/app/data/models/shipping_by_city_model.dart';
 class StoreModel {
   int id;
   String name;
-  String? image;
+  String image;
   bool isOnline;
   List<CategoryModel> categories;
   List<ShippingByCityModel> shippingByCity;
@@ -34,9 +34,9 @@ class StoreModel {
             ? []
             : List<ShippingByCityModel>.from(json['cidades']
                 .map((city) => ShippingByCityModel.fromJson(city))),
-        paymentMethods: json['meiospagamentos'] == null
+        paymentMethods: json['meiosPagamentos'] == null
             ? []
-            : List<PaymentMethodModel>.from(json['meiospagamentos'].map(
+            : List<PaymentMethodModel>.from(json['meiosPagamentos'].map(
                 (paymentMethod) => PaymentMethodModel.fromJson(paymentMethod))),
       );
 }
