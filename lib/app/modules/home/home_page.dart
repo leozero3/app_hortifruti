@@ -27,7 +27,7 @@ class HomePage extends GetView<HomeController> {
                     borderRadius: BorderRadius.circular(8),
                     child: FadeInImage.memoryNetwork(
                       placeholder: kTransparentImage,
-                      image: store.image,
+                      image: store.image!,
                     ),
                   ),
                 ),

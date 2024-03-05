@@ -71,7 +71,7 @@ class CartPage extends GetView<CartController> {
   Widget _buildProductQuantity(CartProductModel cartProduct) {
     return Text(
       NumberFormat.decimalPattern().format(cartProduct.quantity) +
-          (cartProduct.product.isKG ? 'Kg' : 'x'),
+          (cartProduct.product.isKg ? 'Kg' : 'x'),
     );
   }
 }

@@ -16,6 +16,7 @@ class ProductController extends GetxController {
   void onInit() {
     product.value = Get.arguments['product'];
     store.value = Get.arguments['store'];
+
     super.onInit();
   }
 

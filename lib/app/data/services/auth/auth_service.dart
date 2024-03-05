@@ -15,6 +15,7 @@ class AuthService extends GetxService {
   @override
   void onInit() async {
     await _getUser();
+
     super.onInit();
   }
 
@@ -22,7 +23,6 @@ class AuthService extends GetxService {
     var userLoginResponse = await _repository.login(userLoginRequest);
     await _storageService.saveToken(userLoginResponse.token);
     await _getUser();
-
     print(userLoginResponse.token);
   }
 

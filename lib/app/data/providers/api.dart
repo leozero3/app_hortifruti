@@ -13,7 +13,9 @@ class Api extends GetConnect {
   @override
   void onInit() {
     // httpClient.baseUrl = "http://192.168.15.4:3333/"; //work
-    httpClient.baseUrl = "http://192.168.96.1:3333/"; //home
+    httpClient.baseUrl = "http://192.168.0.40:3333/"; //home
+    // httpClient.baseUrl =
+    // "https://dev.hortifruti.174.138.42.25.getmoss.site/"; //site
 
     httpClient.addRequestModifier((Request request) {
       request.headers['Accept'] = 'application/json';
@@ -26,6 +28,7 @@ class Api extends GetConnect {
       var token = _storageService.token;
       var headers = {'Authorization': "Bearer $token"};
       request.headers.addAll(headers);
+
       return request;
     });
     super.onInit();
@@ -33,6 +36,7 @@ class Api extends GetConnect {
 
   Future<UserLoginResponseModel> login(UserLoginRequestModel data) async {
     var response = _errorHandler(await post('login', jsonEncode(data)));
+
     return UserLoginResponseModel.fromJson(response.body);
   }
 
@@ -43,7 +47,8 @@ class Api extends GetConnect {
   }
 
   Future<List<StoreModel>> getStores() async {
-    var response = _errorHandler(await get('cidades/1/estabelecimentos'));
+    var response = _errorHandler(await get('cidades/2/estabelecimentos'));
+
     List<StoreModel> data = [];
     for (var store in response.body) {
       data.add(StoreModel.fromJson(store));
@@ -53,11 +58,9 @@ class Api extends GetConnect {
 
   Future<StoreModel> getStore(int id) async {
     var response = _errorHandler(await get('estabelecimentos/$id'));
-
     return StoreModel.fromJson(response.body);
   }
 
-  // retorna erro caso a resposta de erro
   Response _errorHandler(Response response) {
     print(response.bodyString);
     switch (response.statusCode) {
@@ -65,9 +68,8 @@ class Api extends GetConnect {
       case 202:
       case 204:
         return response;
-
       default:
-        throw Exception('Ocorreu um erro');
+        throw 'Ocorreu um erro';
     }
   }
 }

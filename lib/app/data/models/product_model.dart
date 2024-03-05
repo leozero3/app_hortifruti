@@ -1,13 +1,14 @@
 class ProductModel {
-  int id;
-  String name;
-  num price;
-  String unitOfMeasure;
-  String? description;
-  String image;
-  bool get isKG => unitOfMeasure == 'KG';
+  final int id;
+  final String name;
+  final num price;
+  final String unitOfMeasure;
+  final String? description;
+  final String? image;
 
-  ProductModel({
+  bool get isKg => unitOfMeasure == 'KG';
+
+  const ProductModel({
     required this.id,
     required this.name,
     required this.price,
@@ -18,10 +19,10 @@ class ProductModel {
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         id: json['id'],
-        name: json['nome'],
-        price: num.parse(json['preco']),
-        unitOfMeasure: json['unidade'],
-        image: json['imagem'],
-        description: json['descricao'],
+        name: json['nome'] ?? '',
+        price: double.parse(json['preco']?.toString() ?? '0.0'),
+        unitOfMeasure: json['unidade'] ?? '',
+        image: json['imagem'] ?? '',
+        description: json['descricao'] ?? '',
       );
 }

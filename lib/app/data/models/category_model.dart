@@ -11,17 +11,11 @@ class CategoryModel {
     required this.products,
   });
 
-  factory CategoryModel.fromJson(Map<String, dynamic> json) {
-    return CategoryModel(
+  factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
       id: json['id'],
       name: json['nome'],
       products: json['produtos'] == null
           ? []
-          : List<ProductModel>.from(
-              json['produtos'].map(
-                (product) => ProductModel.fromJson(product),
-              ),
-            ),
-    );
-  }
+          : List<ProductModel>.from(json['produtos']
+              .map((product) => ProductModel.fromJson(product))));
 }

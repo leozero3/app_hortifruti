@@ -19,7 +19,7 @@ class ProductPage extends GetView<ProductController> {
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         child: Column(
           children: [
-            if (product.image.isNotEmpty) ...[
+            if (product.image!.isNotEmpty) ...[
               Align(
                 child: Container(
                   padding: const EdgeInsets.only(bottom: 4),
@@ -27,7 +27,7 @@ class ProductPage extends GetView<ProductController> {
                     borderRadius: BorderRadius.circular(8),
                     child: FadeInImage.memoryNetwork(
                       placeholder: kTransparentImage,
-                      image: product.image,
+                      image: product.image!,
                     ),
                   ),
                 ),
@@ -41,7 +41,7 @@ class ProductPage extends GetView<ProductController> {
               ),
             Text(
               NumberFormat.simpleCurrency().format(product.price) +
-                  (product.isKG ? '/Kg' : ''),
+                  (product.isKg ? '/Kg' : ''),
               style: Get.textTheme.titleLarge,
             ),
             TextField(
@@ -59,14 +59,14 @@ class ProductPage extends GetView<ProductController> {
               child: Column(
                 children: [
                   Text(
-                    'Altere ${product.isKG ? 'o peso' : 'a quantidade'}',
+                    'Altere ${product.isKg ? 'o peso' : 'a quantidade'}',
                     style: const TextStyle(
                       color: Colors.black54,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                   const SizedBox(height: 4),
-                  QuantityAndWeightWidget(isKg: product.isKG),
+                  QuantityAndWeightWidget(isKg: product.isKg),
                 ],
               ),
             ),

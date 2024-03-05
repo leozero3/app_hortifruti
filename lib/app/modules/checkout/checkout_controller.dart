@@ -7,18 +7,18 @@ import 'package:app_hortifruti/app/routes/pages.dart';
 import 'package:get/get.dart';
 
 class CheckoutController extends GetxController {
+  final CheckoutRepository _repository;
   final _cartService = Get.find<CartService>();
   final _authService = Get.find<AuthService>();
-  final CheckoutRepository _repository;
+
   CheckoutController(this._repository);
 
-  bool get isLogged => _authService.isLogged;
   num get totalCart => _cartService.total;
-
   num get deliveryCost {
     if (getShippingByCity != null) {
       return getShippingByCity!.cost;
     }
+
     return 0;
   }
 
@@ -29,11 +29,10 @@ class CheckoutController extends GetxController {
   }
 
   num get totalOrder => totalCart + deliveryCost;
-
   List<PaymentMethodModel> get paymentMethods =>
       _cartService.store.value!.paymentMethods;
-
   final paymentMethod = Rxn<PaymentMethodModel>();
+  bool get isLogged => _authService.isLogged;
 
   void changePaymentMethod(PaymentMethodModel? newPaymentMethod) {
     paymentMethod.value = newPaymentMethod;
