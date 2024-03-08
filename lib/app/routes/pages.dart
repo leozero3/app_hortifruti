@@ -10,6 +10,8 @@ import 'package:app_hortifruti/app/modules/product/product_bindings.dart';
 import 'package:app_hortifruti/app/modules/product/product_page.dart';
 import 'package:app_hortifruti/app/modules/store/store_bindings.dart';
 import 'package:app_hortifruti/app/modules/store/store_page.dart';
+import 'package:app_hortifruti/app/modules/user_address/user_address_bindings.dart';
+import 'package:app_hortifruti/app/modules/user_address/user_address_page.dart';
 import 'package:get/get.dart';
 
 part './routes.dart';
@@ -45,6 +47,11 @@ abstract class AppPages {
       name: Routes.login,
       page: () => LoginPage(),
       binding: LoginBindings(),
+    ),
+    GetPage(
+      name: Routes.userAddress,
+      page: () => UserAddressPage(),
+      binding: UserAddressBindings(),
     ),
   ];
 }

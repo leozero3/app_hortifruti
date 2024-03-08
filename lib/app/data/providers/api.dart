@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:app_hortifruti/app/data/models/address_model.dart';
+import 'package:app_hortifruti/app/data/models/city_model.dart';
 import 'package:app_hortifruti/app/data/models/store_model.dart';
 import 'package:app_hortifruti/app/data/models/user_login_request_model.dart';
 import 'package:app_hortifruti/app/data/models/user_login_response_model.dart';
@@ -34,6 +35,15 @@ class Api extends GetConnect {
       return request;
     });
     super.onInit();
+  }
+
+  Future<List<CityModel>> getCities() async {
+    var response = _errorHandler(await get('cidades'));
+    List<CityModel> data = [];
+    for (var city in response.body) {
+      data.add(CityModel.fromJson(city));
+    }
+    return data;
   }
 
   Future<UserLoginResponseModel> login(UserLoginRequestModel data) async {
