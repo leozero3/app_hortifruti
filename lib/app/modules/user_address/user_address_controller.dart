@@ -16,6 +16,7 @@ class UserAddressController extends GetxController
   final neighborhoodController = TextEditingController(text: 'jd primavera');
   final referenceController = TextEditingController(text: 'mercadinho');
   final complementController = TextEditingController(text: '');
+  final cityId = RxnInt();
 
   @override
   void onInit() {
@@ -28,4 +29,7 @@ class UserAddressController extends GetxController
   }
 
   void submit() {}
+  void changeCity(int? cityIdSelected) {
+    cityId.value = cityIdSelected;
+  }
 }
