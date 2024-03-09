@@ -1,9 +1,8 @@
 import 'dart:convert';
-import 'dart:developer';
-
 import 'package:app_hortifruti/app/data/models/address_model.dart';
 import 'package:app_hortifruti/app/data/models/city_model.dart';
 import 'package:app_hortifruti/app/data/models/store_model.dart';
+import 'package:app_hortifruti/app/data/models/user_address_request_model.dart';
 import 'package:app_hortifruti/app/data/models/user_login_request_model.dart';
 import 'package:app_hortifruti/app/data/models/user_login_response_model.dart';
 import 'package:app_hortifruti/app/data/models/user_model.dart';
@@ -38,34 +37,58 @@ class Api extends GetConnect {
   }
 
   Future<List<CityModel>> getCities() async {
-    var response = _errorHandler(await get('cidades'));
+    var response = _errorHandler(
+      await get('cidades'),
+    );
     List<CityModel> data = [];
     for (var city in response.body) {
-      data.add(CityModel.fromJson(city));
+      data.add(
+        CityModel.fromJson(city),
+      );
     }
     return data;
   }
 
   Future<UserLoginResponseModel> login(UserLoginRequestModel data) async {
-    var response = _errorHandler(await post('login', jsonEncode(data)));
+    var response = _errorHandler(
+      await post(
+        'login',
+        jsonEncode(data),
+      ),
+    );
 
     return UserLoginResponseModel.fromJson(response.body);
   }
 
   Future<UserModel> getUser() async {
-    var response = _errorHandler(await get('auth/me'));
+    var response = _errorHandler(
+      await get('auth/me'),
+    );
 
     return UserModel.fromJson(response.body);
   }
 
   Future<List<AddressModel>> getUserAddresses() async {
-    var response = _errorHandler(await get('enderecos'));
+    var response = _errorHandler(
+      await get('enderecos'),
+    );
 
     List<AddressModel> data = [];
     for (var address in response.body) {
-      data.add(AddressModel.fromJson(address));
+      data.add(
+        AddressModel.fromJson(address),
+      );
     }
     return data;
+  }
+
+  Future<void> postAddress(UserAddressRequestModel data) async {
+    _errorHandler(
+      await post(
+        'enderecos',
+        jsonEncode(data),
+      ),
+    );
   }
 
   Future<List<StoreModel>> getStores() async {
@@ -73,13 +96,17 @@ class Api extends GetConnect {
 
     List<StoreModel> data = [];
     for (var store in response.body) {
-      data.add(StoreModel.fromJson(store));
+      data.add(
+        StoreModel.fromJson(store),
+      );
     }
     return data;
   }
 
   Future<StoreModel> getStore(int id) async {
-    var response = _errorHandler(await get('estabelecimentos/$id'));
+    var response = _errorHandler(
+      await get('estabelecimentos/$id'),
+    );
     return StoreModel.fromJson(response.body);
   }
 
