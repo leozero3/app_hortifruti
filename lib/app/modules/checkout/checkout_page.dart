@@ -30,7 +30,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        if (controller.addresses.isEmpty)
+                        if (!controller.addresses.isEmpty)
                           OutlinedButton(
                               onPressed: controller.goToNewAddress,
                               child: Text('Cadastrar um endereço')),

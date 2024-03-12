@@ -12,6 +12,7 @@ class UserAddressController extends GetxController
   UserAddressController(this._repository);
 
   final _authService = Get.find<AuthService>();
+  final formKey = GlobalKey<FormState>();
   final streetController = TextEditingController(text: 'rua abc');
   final numberController = TextEditingController(text: '10');
   final neighborhoodController = TextEditingController(text: 'jd primavera');
@@ -30,6 +31,11 @@ class UserAddressController extends GetxController
   }
 
   void submit() {
+    Get.focusScope!.unfocus();
+    if (!formKey.currentState!.validate()) {
+      return;
+    }
+
     var userAddressRequest = UserAddressRequestModel(
       street: streetController.text,
       number: numberController.text,

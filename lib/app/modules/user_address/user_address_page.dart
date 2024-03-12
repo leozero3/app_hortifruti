@@ -11,10 +11,11 @@ class UserAddressPage extends GetView<UserAddressController> {
       appBar: AppBar(
         title: const Text('Novo endereço'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        child: controller.obx(
-          (state) => SingleChildScrollView(
+      body: controller.obx(
+        (state) => SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          child: Form(
+            key: controller.formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
