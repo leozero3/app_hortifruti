@@ -30,7 +30,15 @@ class CheckoutPage extends GetView<CheckoutController> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        if (!controller.addresses.isEmpty)
+                        if (controller.addresses.isNotEmpty) ...[
+                          Expanded(
+                            child: _buildAddress(),
+                          ),
+                          TextButton(
+                            onPressed: controller.showAddressList,
+                            child: Text('Alterar'),
+                          ),
+                        ] else
                           OutlinedButton(
                               onPressed: controller.goToNewAddress,
                               child: Text('Cadastrar um endereço')),
@@ -120,5 +128,11 @@ class CheckoutPage extends GetView<CheckoutController> {
             ),
           ),
         ));
+  }
+
+  Widget _buildAddress() {
+    var address = controller.addresseSelected.value!;
+    return Text(
+        '${address.street}, n° ${address.number}, n° ${address.neighborhood}');
   }
 }
