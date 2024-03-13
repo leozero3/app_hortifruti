@@ -50,6 +50,7 @@ class UserAddressController extends GetxController
           content: Text('Endereço adicionado com sucesso!'),
         ),
       );
+      Get.back(result: true);
     }, onError: (error) {
       Get.dialog(AlertDialog(title: Text(error.toString())));
     });
