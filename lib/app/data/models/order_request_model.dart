@@ -23,7 +23,7 @@ class OrderRequestModel {
   Map<String, dynamic> toJson() {
     return {
       'estabelecimento_id': store.id,
-      'meio_pagamento_id': paymentMethod.id,
+      'meios_pagamento_id': paymentMethod.id,
       'produtos':
           cartProducts.map((cartProduct) => cartProduct.toJson()).toList(),
       'endereco_id': address.id,

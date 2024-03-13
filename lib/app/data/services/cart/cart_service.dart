@@ -7,6 +7,7 @@ class CartService extends GetxService {
 
   final store = Rxn<StoreModel>();
   final observation = ''.obs;
+
   num get total => products.fold(
         0,
         (total, cartProduct) => total + cartProduct.total,
@@ -31,5 +32,10 @@ class CartService extends GetxService {
   void newCart(StoreModel newStore) {
     store.value = newStore;
     // products.clear();
+  }
+
+  void finalizeCart() {
+    clearCart();
+    observation.value = '';
   }
 }
