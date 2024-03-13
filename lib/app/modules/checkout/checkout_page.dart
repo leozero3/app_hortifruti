@@ -11,9 +11,14 @@ class CheckoutPage extends GetView<CheckoutController> {
           title: const Text('Checkout'),
           centerTitle: true,
         ),
-        body: SingleChildScrollView(
-          child: Obx(
-            () => Column(
+        body: Obx(() {
+          if (controller.loading.isTrue) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return SingleChildScrollView(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
@@ -138,8 +143,8 @@ class CheckoutPage extends GetView<CheckoutController> {
                 ),
               ],
             ),
-          ),
-        ));
+          );
+        }));
   }
 
   Widget _buildAddress() {

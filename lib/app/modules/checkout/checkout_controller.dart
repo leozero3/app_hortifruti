@@ -19,6 +19,8 @@ class CheckoutController extends GetxController {
   final addresseSelected = Rxn<AddressModel>();
   bool get deliveryToMyAddress => getShippingByCity != null;
 
+  final loading = true.obs;
+
   num get totalOrder => totalCart + deliveryCost;
   bool get isLogged => _authService.isLogged;
   List<PaymentMethodModel> get paymentMethods =>
@@ -69,7 +71,8 @@ class CheckoutController extends GetxController {
       if (addresses.isNotEmpty) {
         addresseSelected.value = addresses.first;
       }
-    });
+      loading.value = false;
+    }, onError: (error) => {loading.value = false});
   }
 
   void showAddressList() {
