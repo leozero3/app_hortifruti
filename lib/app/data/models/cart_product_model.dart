@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app_hortifruti/app/data/models/product_model.dart';
 
 class CartProductModel {
@@ -12,4 +14,11 @@ class CartProductModel {
   });
 
   num get total => product.price * quantity;
+
+  Map<String, dynamic> toJson() => {
+        'produto_id': product.id,
+        'quantidade': quantity,
+        if (observation != null && observation!.trim().isNotEmpty)
+          'observacao': observation,
+      };
 }

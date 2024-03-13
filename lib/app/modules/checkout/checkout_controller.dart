@@ -18,6 +18,7 @@ class CheckoutController extends GetxController {
   final addresses = RxList<AddressModel>();
   final addresseSelected = Rxn<AddressModel>();
   bool get deliveryToMyAddress => getShippingByCity != null;
+  bool get canSendOrder => isLogged && deliveryToMyAddress;
 
   final loading = true.obs;
 
@@ -96,5 +97,16 @@ class CheckoutController extends GetxController {
             child: const Text('Cadastrar um endereço'))
       ],
     ));
+  }
+
+  void sendOrder() {
+    if (paymentMethod.value == null) {
+      ScaffoldMessenger.of(Get.overlayContext!).showSnackBar(
+        const SnackBar(
+          content: const Text('Escolha uma forma de pagamento'),
+        ),
+      );
+      return;
+    }
   }
 }

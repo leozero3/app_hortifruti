@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:app_hortifruti/app/data/models/address_model.dart';
 import 'package:app_hortifruti/app/data/models/city_model.dart';
+import 'package:app_hortifruti/app/data/models/order_request_model.dart';
 import 'package:app_hortifruti/app/data/models/store_model.dart';
 import 'package:app_hortifruti/app/data/models/user_address_request_model.dart';
 import 'package:app_hortifruti/app/data/models/user_login_request_model.dart';
@@ -108,6 +109,15 @@ class Api extends GetConnect {
       await get('estabelecimentos/$id'),
     );
     return StoreModel.fromJson(response.body);
+  }
+
+  Future postOrder(OrderRequestModel data) async {
+    _errorHandler(
+      await post(
+        'pedidos',
+        jsonEncode(data),
+      ),
+    );
   }
 
   Response _errorHandler(Response response) {
