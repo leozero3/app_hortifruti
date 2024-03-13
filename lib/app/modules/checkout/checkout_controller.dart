@@ -17,6 +17,7 @@ class CheckoutController extends GetxController {
   final paymentMethod = Rxn<PaymentMethodModel>();
   final addresses = RxList<AddressModel>();
   final addresseSelected = Rxn<AddressModel>();
+  bool get deliveryToMyAddress => getShippingByCity != null;
 
   num get totalOrder => totalCart + deliveryCost;
   bool get isLogged => _authService.isLogged;
@@ -39,9 +40,15 @@ class CheckoutController extends GetxController {
   }
 
   ShippingByCityModel? get getShippingByCity {
+    if (addresseSelected.value == null) {
+      return null;
+    }
+
     var cityId = 1;
-    return _cartService.store.value!.shippingByCity
-        .firstWhereOrNull((shippingByCity) => shippingByCity.id == cityId);
+
+    return _cartService.store.value!.shippingByCity.firstWhereOrNull(
+        (shippingByCity) =>
+            shippingByCity.id == addresseSelected.value!.city!.id);
   }
 
   void changePaymentMethod(PaymentMethodModel? newPaymentMethod) {
