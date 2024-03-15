@@ -67,11 +67,15 @@ class CheckoutController extends GetxController {
     }
   }
 
-  void goToLogin() {
-    Get.toNamed(Routes.login);
+  Future<void> goToLogin() async {
+    var result = await Get.toNamed(Routes.login);
+
+    if (result is bool && result) {
+      fetchAddresses();
+    }
   }
 
-  fetchAddresses() {
+  void fetchAddresses() {
     _repository.getUserAddresses().then((value) {
       addresses.assignAll(value);
       if (addresses.isNotEmpty) {

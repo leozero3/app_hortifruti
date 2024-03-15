@@ -10,6 +10,7 @@ class StorageService extends GetxService {
 
   @override
   void onInit() {
+    // _token.value = 'adfsrfg';
     _token.value = box.read('${StorageKey.token}');
     box.listenKey(
       StorageKey.token.toString(),
