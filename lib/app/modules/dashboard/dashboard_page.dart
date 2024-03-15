@@ -1,5 +1,5 @@
 import 'package:app_hortifruti/app/modules/home/home_page.dart';
-import 'package:app_hortifruti/app/modules/user_address%20copy/user_profile_page.dart';
+import 'package:app_hortifruti/app/modules/user_profile/user_profile_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import './dashboard_controller.dart';

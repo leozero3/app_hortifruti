@@ -1,6 +1,6 @@
 import 'package:app_hortifruti/app/data/models/city_model.dart';
 import 'package:app_hortifruti/app/data/services/auth/auth_service.dart';
-import 'package:app_hortifruti/app/modules/user_address%20copy/user_profile_repository.dart';
+import 'package:app_hortifruti/app/modules/user_profile/user_profile_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,12 +12,10 @@ class UserProfileController extends GetxController
 
   final _authService = Get.find<AuthService>();
   final formKey = GlobalKey<FormState>();
-  final streetController = TextEditingController(text: 'rua abc');
-  final numberController = TextEditingController(text: '10');
-  final neighborhoodController = TextEditingController(text: 'jd primavera');
-  final referenceController = TextEditingController(text: 'mercadinho');
-  final complementController = TextEditingController(text: '');
-  final cityId = RxnInt();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final phoneController = TextEditingController();
 
   @override
   void onInit() {
@@ -28,6 +26,8 @@ class UserProfileController extends GetxController
     });
     super.onInit();
   }
+
+  void logout() {}
 
   void submit() {
     Get.focusScope!.unfocus();
@@ -53,9 +53,5 @@ class UserProfileController extends GetxController
     // }, onError: (error) {
     //   Get.dialog(AlertDialog(title: Text(error.toString())));
     // });
-  }
-
-  void changeCity(int? cityIdSelected) {
-    cityId.value = cityIdSelected;
   }
 }

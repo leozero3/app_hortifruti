@@ -1,8 +1,8 @@
 import 'package:app_hortifruti/app/data/providers/api.dart';
 import 'package:app_hortifruti/app/modules/home/home_controller.dart';
 import 'package:app_hortifruti/app/modules/home/home_repository.dart';
-import 'package:app_hortifruti/app/modules/user_address%20copy/user_profile_controller.dart';
-import 'package:app_hortifruti/app/modules/user_address%20copy/user_profile_repository.dart';
+import 'package:app_hortifruti/app/modules/user_profile/user_profile_controller.dart';
+import 'package:app_hortifruti/app/modules/user_profile/user_profile_repository.dart';
 import 'package:get/get.dart';
 import './dashboard_controller.dart';
 
