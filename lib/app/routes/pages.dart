@@ -53,5 +53,10 @@ abstract class AppPages {
       page: () => UserAddressPage(),
       binding: UserAddressBindings(),
     ),
+    GetPage(
+      name: Routes.userAddress,
+      page: () => UserAddressPage(),
+      binding: UserAddressBindings(),
+    ),
   ];
 }
