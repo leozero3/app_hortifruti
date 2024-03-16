@@ -1,11 +1,10 @@
-import 'package:app_hortifruti/app/data/models/city_model.dart';
+import 'package:app_hortifruti/app/data/models/user_model.dart';
 import 'package:app_hortifruti/app/data/services/auth/auth_service.dart';
 import 'package:app_hortifruti/app/modules/user_profile/user_profile_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class UserProfileController extends GetxController
-    with StateMixin<List<CityModel>> {
+class UserProfileController extends GetxController with StateMixin<UserModel> {
   final UserProfileRepository _repository;
 
   UserProfileController(this._repository);
@@ -19,7 +18,10 @@ class UserProfileController extends GetxController
 
   @override
   void onInit() {
-    _repository.getCities().then((data) {
+    _repository.getUser().then((data) {
+      nameController.text = data.name;
+      emailController.text = data.email;
+      phoneController.text = data.phone;
       change(data, status: RxStatus.success());
     }, onError: (error) {
       change(null, status: RxStatus.error(error));
