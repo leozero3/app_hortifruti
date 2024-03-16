@@ -67,8 +67,8 @@ class UserProfilePage extends GetView<UserProfileController> {
                   ),
                   obscureText: true,
                   validator: (value) {
-                    if (value != null && value.isEmpty) {
-                      return 'Informe sua senha';
+                    if (value != null && value.isNotEmpty && value.length < 8) {
+                      return 'Informe uma senha valida maior que 8 caracteres';
                     }
 
                     return null;

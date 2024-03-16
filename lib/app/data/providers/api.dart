@@ -7,6 +7,7 @@ import 'package:app_hortifruti/app/data/models/user_address_request_model.dart';
 import 'package:app_hortifruti/app/data/models/user_login_request_model.dart';
 import 'package:app_hortifruti/app/data/models/user_login_response_model.dart';
 import 'package:app_hortifruti/app/data/models/user_model.dart';
+import 'package:app_hortifruti/app/data/models/user_profile_request_model.dart';
 import 'package:app_hortifruti/app/data/services/storage/storage_service.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
@@ -66,6 +67,11 @@ class Api extends GetConnect {
       await get('auth/me'),
     );
 
+    return UserModel.fromJson(response.body);
+  }
+
+  Future<UserModel> putUser(UserProfileRequestModel data) async {
+    var response = _errorHandler(await put('cliente', jsonEncode(data)));
     return UserModel.fromJson(response.body);
   }
 

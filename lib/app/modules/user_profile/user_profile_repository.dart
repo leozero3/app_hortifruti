@@ -1,5 +1,5 @@
-import 'package:app_hortifruti/app/data/models/city_model.dart';
 import 'package:app_hortifruti/app/data/models/user_model.dart';
+import 'package:app_hortifruti/app/data/models/user_profile_request_model.dart';
 import 'package:app_hortifruti/app/data/providers/api.dart';
 
 class UserProfileRepository {
@@ -11,7 +11,6 @@ class UserProfileRepository {
     return _api.getUser();
   }
 
-  // Future<void> postAddress(UserProfileRequestModel userAddressRequestModel) {
-  //   return _api.postAddress(userAddressRequestModel);
-  // }
+  Future<UserModel> putUser(UserProfileRequestModel userProfileRequest) =>
+      _api.putUser(userProfileRequest);
 }
