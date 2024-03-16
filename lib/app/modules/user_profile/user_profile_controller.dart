@@ -2,6 +2,7 @@ import 'package:app_hortifruti/app/data/models/user_model.dart';
 import 'package:app_hortifruti/app/data/models/user_profile_request_model.dart';
 import 'package:app_hortifruti/app/data/services/auth/auth_service.dart';
 import 'package:app_hortifruti/app/modules/user_profile/user_profile_repository.dart';
+import 'package:app_hortifruti/app/routes/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,7 +31,11 @@ class UserProfileController extends GetxController with StateMixin<UserModel> {
     super.onInit();
   }
 
-  void logout() {}
+  Future<void> logout() async {
+    await _authService.logout();
+
+    Get.offAllNamed(Routes.dashboard);
+  }
 
   void submit() {
     Get.focusScope!.unfocus();

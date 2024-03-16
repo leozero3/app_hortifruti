@@ -10,7 +10,6 @@ class StorageService extends GetxService {
 
   @override
   void onInit() {
-    // _token.value = 'adfsrfg';
     _token.value = box.read('${StorageKey.token}');
     box.listenKey(
       StorageKey.token.toString(),
@@ -21,5 +20,9 @@ class StorageService extends GetxService {
 
   Future<void> saveToken(String token) async {
     return box.write('${StorageKey.token}', token);
+  }
+
+  Future<void> removeToken() async {
+    return box.remove('${StorageKey.token}');
   }
 }
