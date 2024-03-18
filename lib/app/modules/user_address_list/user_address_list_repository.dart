@@ -9,4 +9,8 @@ class UserAddressListRepository {
   Future<List<AddressModel>> getUserAddresses() {
     return _api.getUserAddresses();
   }
+
+  Future<void> deleteAddress(int id) {
+    return _api.deleteAddress(id);
+  }
 }
