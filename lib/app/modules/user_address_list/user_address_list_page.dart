@@ -33,7 +33,15 @@ class UserAddressListPage extends GetView<UserAddressListController> {
                   ],
                 ),
               ),
-              for (var address in state!)
+              if (state!.isEmpty)
+                const Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Text(
+                    'Nenhum endereço cadastrado',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              for (var address in state)
                 ListTile(
                   title: Text('${address.street}, n° ${address.number}'),
                   subtitle:
