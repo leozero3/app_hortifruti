@@ -7,9 +7,11 @@ class UserAddressPage extends GetView<UserAddressController> {
 
   @override
   Widget build(BuildContext context) {
+    var editing = controller.editing.isTrue;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Novo endereço'),
+        centerTitle: true,
+        title: Text(editing ? 'Editar Endereço' : 'Novo endereço'),
       ),
       body: controller.obx(
         (state) => SingleChildScrollView(
@@ -108,7 +110,7 @@ class UserAddressPage extends GetView<UserAddressController> {
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         child: ElevatedButton(
                           onPressed: controller.submit,
-                          child: const Text('Adicionar'),
+                          child: Text(editing ? 'Atualizar' : 'Adicionar'),
                         ),
                       ),
                     ),

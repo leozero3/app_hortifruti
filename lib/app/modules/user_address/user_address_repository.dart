@@ -11,7 +11,11 @@ class UserAddressRepository {
     return _api.getCities();
   }
 
-  Future<void> postAddress(UserAddressRequestModel userAddressRequestModel) {
-    return _api.postAddress(userAddressRequestModel);
+  Future<void> postAddress(UserAddressRequestModel userAddressRequest) {
+    return _api.postAddress(userAddressRequest);
+  }
+
+  Future<void> putAddress(UserAddressRequestModel userAddressRequest) {
+    return _api.putAddress(userAddressRequest);
   }
 }

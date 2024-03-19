@@ -11,12 +11,12 @@ class UserAddressListPage extends GetView<UserAddressListController> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'Endereços',
+          'Meus Endereços',
         ),
       ),
-      body: SingleChildScrollView(
-        child: controller.obx(
-          (state) => Column(
+      body: controller.obx(
+        (state) => SingleChildScrollView(
+          child: Column(
             children: [
               Padding(
                 padding:
@@ -45,6 +45,7 @@ class UserAddressListPage extends GetView<UserAddressListController> {
                           controller.deleteAddress(address);
                           break;
                         case 'edit':
+                          controller.goToEditAddress(address);
                           break;
                       }
                     },
