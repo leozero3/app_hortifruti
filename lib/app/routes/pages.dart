@@ -6,6 +6,7 @@ import 'package:app_hortifruti/app/modules/dashboard/dashboard_bindings.dart';
 import 'package:app_hortifruti/app/modules/dashboard/dashboard_page.dart';
 import 'package:app_hortifruti/app/modules/login/login_bindings.dart';
 import 'package:app_hortifruti/app/modules/login/login_page.dart';
+import 'package:app_hortifruti/app/modules/order_list/order_list_page.dart';
 import 'package:app_hortifruti/app/modules/product/product_bindings.dart';
 import 'package:app_hortifruti/app/modules/product/product_page.dart';
 import 'package:app_hortifruti/app/modules/store/store_bindings.dart';
@@ -22,7 +23,7 @@ abstract class AppPages {
   static final pages = [
     GetPage(
       name: Routes.dashboard,
-      page: () => DashboardPage(),
+      page: () => const DashboardPage(),
       binding: DashboardBindings(),
     ),
     GetPage(
@@ -37,7 +38,7 @@ abstract class AppPages {
     ),
     GetPage(
       name: Routes.cart,
-      page: () => CartPage(),
+      page: () => const CartPage(),
       binding: CartBindings(),
     ),
     GetPage(
@@ -47,22 +48,27 @@ abstract class AppPages {
     ),
     GetPage(
       name: Routes.login,
-      page: () => LoginPage(),
+      page: () => const LoginPage(),
       binding: LoginBindings(),
     ),
     GetPage(
       name: Routes.userAddress,
-      page: () => UserAddressPage(),
+      page: () => const UserAddressPage(),
       binding: UserAddressBindings(),
     ),
     GetPage(
       name: Routes.userAddress,
-      page: () => UserAddressPage(),
+      page: () => const UserAddressPage(),
       binding: UserAddressBindings(),
     ),
     GetPage(
       name: Routes.userAddressList,
-      page: () => UserAddressListPage(),
+      page: () => const UserAddressListPage(),
+      binding: UserAddressListBindings(),
+    ),
+    GetPage(
+      name: Routes.userAddressList,
+      page: () => const OrderListPage(),
       binding: UserAddressListBindings(),
     ),
   ];
