@@ -9,14 +9,29 @@ class OrderListPage extends GetView<OrderListController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Meus Pedidos'),
-          centerTitle: true,
+      appBar: AppBar(
+        title: const Text('Meus Pedidos'),
+        centerTitle: true,
+      ),
+      body: controller.obx(
+        (state) => ListView(
+          children: [
+            for (var order in state!)
+              ListTile(
+                title: Text(order.hashId),
+                subtitle: Text(order.store.name),
+                trailing: Chip(
+                  label: Text(order.statusList.last.name),
+                ),
+              )
+          ],
         ),
-        body: Center(
+        onError: (error) => Center(
           child: ElevatedButton(
               onPressed: () => Get.toNamed(Routes.login),
               child: const Text('Entrar com minha conta')),
-        ));
+        ),
+      ),
+    );
   }
 }

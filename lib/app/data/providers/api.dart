@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:app_hortifruti/app/data/models/address_model.dart';
 import 'package:app_hortifruti/app/data/models/city_model.dart';
+import 'package:app_hortifruti/app/data/models/order_model.dart';
 import 'package:app_hortifruti/app/data/models/order_request_model.dart';
 import 'package:app_hortifruti/app/data/models/store_model.dart';
 import 'package:app_hortifruti/app/data/models/user_address_request_model.dart';
@@ -125,6 +126,7 @@ class Api extends GetConnect {
     return StoreModel.fromJson(response.body);
   }
 
+  //pedidos
   Future postOrder(OrderRequestModel data) async {
     _errorHandler(
       await post(
@@ -132,6 +134,16 @@ class Api extends GetConnect {
         jsonEncode(data),
       ),
     );
+  }
+
+  Future<List<OrderModel>> getOrders() async {
+    var response = _errorHandler(await get('pedidos'));
+    List<OrderModel> data = [];
+    for (var order in response.body) {
+      data.add(OrderModel.fromJson(order));
+    }
+
+    return data;
   }
 
   Response _errorHandler(Response response) {

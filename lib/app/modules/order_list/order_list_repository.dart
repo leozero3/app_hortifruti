@@ -1,3 +1,4 @@
+import 'package:app_hortifruti/app/data/models/order_model.dart';
 import 'package:app_hortifruti/app/data/providers/api.dart';
 
 class OrderListRepository {
@@ -5,7 +6,7 @@ class OrderListRepository {
 
   OrderListRepository(this._api);
 
-  getAll() {
-    // return _api.getAll();
+  Future<List<OrderModel>> getOrders() {
+    return _api.getOrders();
   }
 }
