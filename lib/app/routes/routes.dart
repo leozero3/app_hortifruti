@@ -10,4 +10,5 @@ abstract class Routes {
   static const userAddress = '/user-address';
   static const userAddressList = '/user-address-list';
   static const orderListPage = '/order-list';
+  static const order = '/order/:id';
 }

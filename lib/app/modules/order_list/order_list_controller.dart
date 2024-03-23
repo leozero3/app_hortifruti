@@ -11,11 +11,9 @@ class OrderListController extends GetxController
   @override
   void onInit() {
     _repository.getOrders().then((data) {
-      change(data, status: RxStatus.success());
+      var status = data.isEmpty ? RxStatus.empty() : RxStatus.success();
+      change(data, status: status);
     }, onError: (error) {
-      print('--------------------------------------------------------');
-      print(error);
-      print('--------------------------------------------------------');
       change(null, status: RxStatus.error(error.toString()));
     });
     super.onInit();

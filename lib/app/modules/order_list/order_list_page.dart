@@ -23,13 +23,22 @@ class OrderListPage extends GetView<OrderListController> {
                 trailing: Chip(
                   label: Text(order.statusList.last.name),
                 ),
+                onTap: () =>
+                    Get.toNamed(Routes.order.replaceFirst(':id', order.hashId)),
               )
           ],
         ),
+        onEmpty: const Center(
+          child: Text(
+            'Voce nao fez nenhum pedido ainda',
+            textAlign: TextAlign.center,
+          ),
+        ),
         onError: (error) => Center(
           child: ElevatedButton(
-              onPressed: () => Get.toNamed(Routes.login),
-              child: const Text('Entrar com minha conta')),
+            onPressed: () => Get.toNamed(Routes.login),
+            child: const Text('Entrar com minha conta'),
+          ),
         ),
       ),
     );
