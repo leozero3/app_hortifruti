@@ -1,4 +1,7 @@
+import 'package:app_hortifruti/app/data/models/address_model.dart';
+import 'package:app_hortifruti/app/data/models/order_product_model.dart';
 import 'package:app_hortifruti/app/data/models/order_status_model.dart';
+import 'package:app_hortifruti/app/data/models/payment_method_model.dart';
 import 'package:app_hortifruti/app/data/models/store_model.dart';
 
 class OrderModel {
@@ -6,6 +9,9 @@ class OrderModel {
   StoreModel store;
   num value;
   num deliveryCost;
+  AddressModel? address;
+  PaymentMethodModel? paymentMethod;
+  List<OrderProductModel> productList;
   List<OrderStatusModel> statusList;
   String? observation;
   DateTime createdAt;
@@ -15,6 +21,9 @@ class OrderModel {
     required this.store,
     required this.value,
     required this.deliveryCost,
+    required this.address,
+    this.paymentMethod,
+    required this.productList,
     required this.statusList,
     this.observation,
     required this.createdAt,
@@ -26,6 +35,16 @@ class OrderModel {
       store: StoreModel.fromJson(json['estabelecimento']),
       value: double.parse(json['valor']?.toString() ?? '0.0'),
       deliveryCost: double.parse(json['custo_entrega']?.toString() ?? '0.0'),
+      address: json['endereco'] == null
+          ? null
+          : AddressModel.fromJson(json['endereco']),
+      paymentMethod: json['meio_pagamento'] == null
+          ? null
+          : PaymentMethodModel.fromJson(json['meio_pagamento']),
+      productList: json['produtos'] == null
+          ? []
+          : List<OrderProductModel>.from(json['produtos']
+              .map((status) => OrderProductModel.fromJson(status))),
       statusList: json['pedido_status'] == null
           ? []
           : List<OrderStatusModel>.from(json['pedido_status']
