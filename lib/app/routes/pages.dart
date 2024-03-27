@@ -11,6 +11,8 @@ import 'package:app_hortifruti/app/modules/order/order_page.dart';
 import 'package:app_hortifruti/app/modules/order_list/order_list_page.dart';
 import 'package:app_hortifruti/app/modules/product/product_bindings.dart';
 import 'package:app_hortifruti/app/modules/product/product_page.dart';
+import 'package:app_hortifruti/app/modules/select_city/select_city_bindings.dart';
+import 'package:app_hortifruti/app/modules/select_city/select_city_page.dart';
 import 'package:app_hortifruti/app/modules/store/store_bindings.dart';
 import 'package:app_hortifruti/app/modules/store/store_page.dart';
 import 'package:app_hortifruti/app/modules/user_address/user_address_bindings.dart';
@@ -77,6 +79,12 @@ abstract class AppPages {
       name: Routes.order,
       page: () => const OrderPage(),
       binding: OrderBindings(),
+    ),
+    GetPage(
+      name: Routes.selectCity,
+      page: () => const SelectCityPage(),
+      binding: SelectCityBindings(),
+      fullscreenDialog: true,
     ),
   ];
 }

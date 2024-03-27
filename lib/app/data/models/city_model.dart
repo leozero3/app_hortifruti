@@ -8,11 +8,11 @@ class CityModel {
     required this.uf,
   });
 
-  factory CityModel.fromJson(Map<String, dynamic> map) {
+  factory CityModel.fromJson(Map<String, dynamic> json) {
     return CityModel(
-      id: map['id']?.toInt() ?? 0,
-      name: map['nome'] ?? '',
-      uf: map['uf'] ?? '',
+      id: json['id'],
+      name: json['nome'],
+      uf: json['estado']['uf'],
     );
   }
 }
