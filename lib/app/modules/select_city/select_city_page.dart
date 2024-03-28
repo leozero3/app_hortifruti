@@ -22,7 +22,7 @@ class SelectCityPage extends GetView<SelectCityController> {
                       '${city.name} / ${city.uf}',
                       textAlign: TextAlign.center,
                     ),
-                    onTap: () {},
+                    onTap: () => controller.onSelected(city),
                   )
               ],
             ),

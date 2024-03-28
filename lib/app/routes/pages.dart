@@ -1,3 +1,6 @@
+import 'package:app_hortifruti/app/data/services/storage/storage_service.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:app_hortifruti/app/modules/cart/cart_bindings.dart';
 import 'package:app_hortifruti/app/modules/cart/cart_page.dart';
 import 'package:app_hortifruti/app/modules/checkout/checkout_bindings.dart';
@@ -19,8 +22,6 @@ import 'package:app_hortifruti/app/modules/user_address/user_address_bindings.da
 import 'package:app_hortifruti/app/modules/user_address/user_address_page.dart';
 import 'package:app_hortifruti/app/modules/user_address_list/user_address_list_bindings.dart';
 import 'package:app_hortifruti/app/modules/user_address_list/user_address_list_page.dart';
-import 'package:get/get.dart';
-
 part './routes.dart';
 
 abstract class AppPages {
@@ -29,6 +30,9 @@ abstract class AppPages {
       name: Routes.dashboard,
       page: () => const DashboardPage(),
       binding: DashboardBindings(),
+      middlewares: [
+        RedirectMiddleare(),
+      ],
     ),
     GetPage(
       name: Routes.store,
@@ -87,4 +91,15 @@ abstract class AppPages {
       fullscreenDialog: true,
     ),
   ];
+}
+
+class RedirectMiddleare extends GetMiddleware {
+  @override
+  RouteSettings? redirect(String? route) {
+    var storageService = Get.find<StorageService>();
+
+    return storageService.cityId != null
+        ? null
+        : const RouteSettings(name: Routes.selectCity);
+  }
 }
