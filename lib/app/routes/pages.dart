@@ -1,4 +1,6 @@
 import 'package:app_hortifruti/app/data/services/storage/storage_service.dart';
+import 'package:app_hortifruti/app/modules/regiter/register_bindings.dart';
+import 'package:app_hortifruti/app/modules/regiter/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app_hortifruti/app/modules/cart/cart_bindings.dart';
@@ -58,6 +60,11 @@ abstract class AppPages {
       name: Routes.login,
       page: () => const LoginPage(),
       binding: LoginBindings(),
+    ),
+    GetPage(
+      name: Routes.register,
+      page: () => const RegisterPage(),
+      binding: RegisterBindings(),
     ),
     GetPage(
       name: Routes.userAddress,

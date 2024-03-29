@@ -1,3 +1,4 @@
+import 'package:app_hortifruti/app/routes/pages.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import './login_controller.dart';
@@ -9,7 +10,8 @@ class LoginPage extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('LoginPage'),
+        title: const Text('Login'),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -73,7 +75,7 @@ class LoginPage extends GetView<LoginController> {
                   children: [
                     Expanded(
                       child: OutlinedButton(
-                        onPressed: () {},
+                        onPressed: () => Get.toNamed(Routes.register),
                         child: const Text('Quero criar uma conta'),
                       ),
                     ),
