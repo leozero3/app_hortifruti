@@ -40,6 +40,8 @@ class CheckoutController extends GetxController {
   @override
   void onInit() {
     fetchAddresses();
+
+    ever(_authService.user, (_) => fetchAddresses());
     super.onInit();
   }
 
@@ -67,15 +69,12 @@ class CheckoutController extends GetxController {
     }
   }
 
-  Future<void> goToLogin() async {
-    var result = await Get.toNamed(Routes.login);
-
-    if (result is bool && result) {
-      fetchAddresses();
-    }
+  void goToLogin() {
+    Get.toNamed(Routes.login);
   }
 
   void fetchAddresses() {
+    loading(true);
     _repository.getUserAddresses().then((value) {
       addresses.assignAll(value);
       if (addresses.isNotEmpty) {

@@ -32,36 +32,38 @@ class CheckoutPage extends GetView<CheckoutController> {
                 if (controller.isLogged) ...[
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    child: Column(
                       children: [
                         if (controller.addresseSelected.value != null) ...[
-                          Expanded(
-                            child: _buildAddress(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: _buildAddress(),
+                              ),
+                              TextButton(
+                                onPressed: controller.showAddressList,
+                                child: Text('Alterar'),
+                              ),
+                            ],
                           ),
-                          TextButton(
-                            onPressed: controller.showAddressList,
-                            child: Text('Alterar'),
-                          ),
+                          if (!controller.deliveryToMyAddress)
+                            Text(
+                              'O endereço selecionado não é atendido',
+                              textAlign: TextAlign.center,
+                              style: Get.textTheme.bodyLarge!
+                                  .copyWith(color: Colors.red),
+                            ),
                         ] else
-                          OutlinedButton(
+                          Center(
+                            child: OutlinedButton(
                               onPressed: controller.goToNewAddress,
-                              child: Text('Cadastrar um endereço')),
+                              child: Text('Cadastrar um endereço'),
+                            ),
+                          ),
                       ],
                     ),
                   ),
-                  if (!controller.deliveryToMyAddress)
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Center(
-                        child: Text(
-                          'O endereço selecionado não é atendido',
-                          textAlign: TextAlign.center,
-                          style: Get.textTheme.bodyLarge!
-                              .copyWith(color: Colors.red),
-                        ),
-                      ),
-                    ),
                 ] else
                   Center(
                     child: OutlinedButton(
