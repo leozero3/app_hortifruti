@@ -13,8 +13,22 @@ class UserProfilePage extends GetView<UserProfileController> {
         title: const Text('Meu Perfil'),
         centerTitle: true,
       ),
-      body: controller.obx(
-        (state) => SingleChildScrollView(
+      body: Obx(() {
+        if (controller.loading.isTrue) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+
+        if (!controller.isLogged) {
+          return Center(
+            child: ElevatedButton(
+                onPressed: () => Get.toNamed(Routes.login),
+                child: const Text('Entrar com minha conta')),
+          );
+        }
+
+        return SingleChildScrollView(
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           child: Column(
             children: [
@@ -123,15 +137,8 @@ class UserProfilePage extends GetView<UserProfileController> {
               ),
             ],
           ),
-        ),
-        onError: (error) {
-          return Center(
-            child: ElevatedButton(
-                onPressed: () => Get.toNamed(Routes.login),
-                child: const Text('Entrar com minha conta')),
-          );
-        },
-      ),
+        );
+      }),
     );
   }
 }
